@@ -42,7 +42,7 @@ exit /b
 :netisgood
 echo Check for .Net 4.5                  PASS.
 
-rem DOWNLOAD WGET.EXE BECAUSE THE .NET DOWNLOADER SUCKS!!  This is like using IE to download Chrome. :D
+rem DOWNLOAD WGET.EXE - it's much faster then the .net downloader
 echo(
 Echo Downloading WGET [Using .NET]
 powershell -ExecutionPolicy unrestricted -command "(New-Object Net.WebClient).DownloadFile(\"%_DEPLOYURL%/bootstrap/wget.exe\", \"wget.exe\")"
@@ -50,9 +50,16 @@ powershell -ExecutionPolicy unrestricted -command "(New-Object Net.WebClient).Do
 rem DOWNLOAD 7zip command line
 Echo Downloading 7zip
 wget --no-check-certificate -q "%_DEPLOYURL%/bootstrap/7za.exe" -O 7za.exe
-wget --no-check-certificate "%_DEPLOYURL%/z/%_APP%.exe" -O %_APP%.exe
+Echo Downloaded 7zip
+
+Echo Downloading package %_APP% - this could take some time depending on the package size
+wget --no-check-certificate -q "%_DEPLOYURL%/z/%_APP%.exe" -O %_APP%.exe
+Echo Finished downloading %_APP%
+
+Echo Extracting...
 7za x %_APP%.exe -aoa -p%_PASS%
 
+Echo Executing tasks....
 for /f "delims=" %%a in (.\%_APP%\execute.txt) DO call %%a
 
 echo Cleaning up...
