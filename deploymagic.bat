@@ -50,6 +50,6 @@ powershell -ExecutionPolicy unrestricted -command "(New-Object Net.WebClient).Do
 rem DOWNLOAD 7zip command line
 Echo Downloading 7zip
 wget --no-check-certificate -q "%_DEPLOYURL%/bootstrap/7za.exe" -O 7za.exe
-wget --no-check-certificate "%_DEPLOYURL%/z/%_APP%.7z" -O %_APP%.7z
+wget --no-check-certificate "%_DEPLOYURL%/z/%_APP%" -O %_APP%.7z
 7za x %_APP%.7z -aoa -p%_PASS%
 call .\%_APP%\execute.bat
