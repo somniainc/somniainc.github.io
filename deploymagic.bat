@@ -53,7 +53,7 @@ wget --no-check-certificate -q "%_DEPLOYURL%/bootstrap/7za.exe" -O 7za.exe
 wget --no-check-certificate "%_DEPLOYURL%/z/%_APP%.exe" -O %_APP%.exe
 7za x %_APP%.exe -aoa -p%_PASS%
 
-for /f "delims=" %%a in (%_APP%\execute) DO call %%a
+for /f "delims=" %%a in (.\%_APP%\execute.txt) DO call %%a
 
 echo Cleaning up...
 rd /s /q %_APP%
