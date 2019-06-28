@@ -7,6 +7,7 @@ SET _PASS=%2
 SET _DEPLOYURL=http://softdeploy.somniainc.com
 
 cd /D "%~dp0"
+set _CURPATH=%~dp0
 Echo Pre-flight checks.  Ensuring pre-requisites are met.
 Echo(
 
@@ -49,7 +50,13 @@ powershell -ExecutionPolicy unrestricted -command "(New-Object Net.WebClient).Do
 rem DOWNLOAD 7zip command line
 Echo Downloading 7zip
 wget --no-check-certificate -q "%_DEPLOYURL%/bootstrap/7za.exe" -O 7za.exe
-wget --no-check-certificate "%_DEPLOYURL%/z/%_APP%.exe" -O %_APP%.7z
-7za x %_APP%.7z -aoa -p%_PASS%
-del %_APP%.7z
-call .\%_APP%\execute.bat
+wget --no-check-certificate "%_DEPLOYURL%/z/%_APP%.exe" -O %_APP%.exe
+7za x %_APP%.exe -aoa -p%_PASS%
+
+for /f "delims=" %%a in (%_APP%\execute) DO call %%a
+
+echo Cleaning up...
+rd /s /q %_APP%
+del %_APP%.exe
+del 7za.exe
+del wget.exe
