@@ -47,7 +47,6 @@ echo(
 Echo Downloading WGET [Using .NET]
 powershell -ExecutionPolicy unrestricted -command "(New-Object Net.WebClient).DownloadFile(\"%_DEPLOYURL%/bootstrap/wget.exe\", \"wget.exe\")"
 
-rem DOWNLOAD 7zip command line
 Echo Downloading 7zip
 wget --no-check-certificate -q "%_DEPLOYURL%/bootstrap/7za.exe" -O 7za.exe
 Echo Downloaded 7zip
