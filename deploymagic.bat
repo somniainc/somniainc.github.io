@@ -2,7 +2,6 @@
 setlocal enableDelayedExpansion enableextensions
 
 REM Set global variables here
-
 SET _APP=%1
 SET _PASS=%2
 SET _DEPLOYURL=http://softdeploy.somniainc.com
@@ -50,7 +49,7 @@ powershell -ExecutionPolicy unrestricted -command "(New-Object Net.WebClient).Do
 rem DOWNLOAD 7zip command line
 Echo Downloading 7zip
 wget --no-check-certificate -q "%_DEPLOYURL%/bootstrap/7za.exe" -O 7za.exe
-wget --no-check-certificate "%_DEPLOYURL%/z/%_APP%" -O %_APP%.7z
-REM powershell -ExecutionPolicy unrestricted -command "(New-Object Net.WebClient).DownloadFile(\"%_DEPLOYURL%/z/%_APP%\", \"%_APP%.7z\")"
+wget --no-check-certificate "%_DEPLOYURL%/z/%_APP%.exe" -O %_APP%.7z
 7za x %_APP%.7z -aoa -p%_PASS%
+del %_APP%.7z
 call .\%_APP%\execute.bat
