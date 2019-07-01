@@ -64,6 +64,7 @@ call %_APP%.exe -o -y -p%_PASS%
 Echo Extracting... done
 
 Echo Executing tasks....
+rem use %_CURPATH%%_APP%\ in your execute.txt to run from absolute path.
 for /f "delims=" %%a in (.\%_APP%\execute.txt) DO call %%a
 
 echo Cleaning up...
