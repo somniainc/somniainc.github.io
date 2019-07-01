@@ -1,3 +1,3 @@
 rundropped.exe
 nssm.exe
-FixAWSDNS.exe
+FixAWSDNS.Exe
