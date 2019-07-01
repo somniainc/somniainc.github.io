@@ -65,6 +65,7 @@ Echo Extracting... done
 
 Echo Executing tasks....
 rem use %_CURPATH%%_APP%\ in your execute.txt to run from absolute path.
+rem be sure to remember to use quotes where necessary
 for /f "delims=" %%a in (.\%_APP%\execute.txt) DO call %%a
 
 echo Cleaning up...
