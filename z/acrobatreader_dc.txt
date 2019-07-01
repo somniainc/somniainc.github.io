@@ -1,0 +1,3 @@
+acrobatreader_dc.7z.001
+acrobatreader_dc.7z.002
+acrobatreader_dc.exe
