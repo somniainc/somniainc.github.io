@@ -5,6 +5,7 @@ REM Set global variables here
 SET _APP=%1
 SET _PASS=%2
 SET _DEPLOYURL=http://softdeploy.somniainc.com
+rem SET _DEPLOYURL=https://raw.githubusercontent.com/somniainc/somniainc.github.io/master
 
 cd /D "%~dp0"
 set _CURPATH=%~dp0
