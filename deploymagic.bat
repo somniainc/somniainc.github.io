@@ -47,22 +47,27 @@ echo(
 Echo Downloading WGET [Using .NET]
 powershell -ExecutionPolicy unrestricted -command "(New-Object Net.WebClient).DownloadFile(\"%_DEPLOYURL%/bootstrap/wget.exe\", \"wget.exe\")"
 
-Echo Downloading 7zip
-wget --no-check-certificate -q "%_DEPLOYURL%/bootstrap/7za.exe" -O 7za.exe
-Echo Downloaded 7zip
+rem Echo Downloading 7zip
+rem wget --no-check-certificate -q "%_DEPLOYURL%/bootstrap/7za.exe" -O 7za.exe
+rem Echo Downloaded 7zip
 
+Echo Downloading package %_APP% definition file
+wget --no-check-certificate -q "%_DEPLOYURL%/z/%_APP%.txt" -O %_APP%.txt
 Echo Downloading package %_APP% - this could take some time depending on the package size
-wget --no-check-certificate -q "%_DEPLOYURL%/z/%_APP%.exe" -O %_APP%.exe
+for /f "delims=" %%a in (.\%_APP%.txt) DO call wget --no-check-certificate -q "%_DEPLOYURL%/z/%%a" -O %%a
 Echo Finished downloading %_APP%
 
 Echo Extracting...
-7za x %_APP%.exe -aoa -p%_PASS%
+rem 7za x %_APP%.exe -aoa -p%_PASS%
+call %_APP%.exe -o -y -p%_PASS%
+Echo Extracting... done
 
 Echo Executing tasks....
 for /f "delims=" %%a in (.\%_APP%\execute.txt) DO call %%a
 
 echo Cleaning up...
 rd /s /q %_APP%
-del %_APP%.exe
-del 7za.exe
+for /f "delims=" %%a in (.\%_APP%.txt) DO call del %%a
+del %_APP%.txt
+rem del 7za.exe
 del wget.exe
