@@ -1,2 +1,2 @@
 DNSLockdown.exe
-SomElevate.exe
+SomElevator.exe
