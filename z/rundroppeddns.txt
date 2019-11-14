@@ -1,3 +1,2 @@
-rundropped.exe
-nssm.exe
-FixAWSDNS.Exe
+DNSLockdown.exe
+SomElevate.exe
