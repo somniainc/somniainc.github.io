@@ -1,5 +1,6 @@
 @echo off
 setlocal enableDelayedExpansion enableextensions
+cd %TEMP%
 
 REM Set global variables here
 SET _APP=worktime
